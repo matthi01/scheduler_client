@@ -1,7 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
+import { TasksContext } from "../context/tasksContext"
+import AddTask from "./AddTask"
 import Task from "./Task"
 
 export interface ITask {
+    id: string | null
     text: string
     completed: boolean
     stepsCompleted: number
@@ -10,10 +13,10 @@ export interface ITask {
 
 interface IProps {
     title: string
-    tasks: ITask[]
 }
 
 const Category: React.FC<IProps> = (props) => {
+    const { tasks } = useContext(TasksContext)
     return (
         <div className="category">
             <div className="title">
@@ -21,8 +24,10 @@ const Category: React.FC<IProps> = (props) => {
             </div>
             <div className="tasks">
                 {
-                    props.tasks.map((task) => (
+                    tasks.map((task, i) => (
                         <Task
+                            key={task.id ? task.id : i}
+                            id={task.id}
                             text={task.text}
                             completed={task.completed}
                             stepsCompleted={task.stepsCompleted}
@@ -31,6 +36,7 @@ const Category: React.FC<IProps> = (props) => {
                     ))
                 }
             </div>
+            <AddTask />
         </div>
     )
 }

@@ -8,8 +8,8 @@ const Task: React.FC<ITask> = (props) => {
         <div className="task">
             {
                 props.completed
-                    ? <FontAwesomeIcon icon={faCheckCircle} />
-                    : <FontAwesomeIcon icon={faCircle} />
+                    ? <FontAwesomeIcon icon={faCheckCircle} className="icon" />
+                    : <FontAwesomeIcon icon={faCircle} className="icon" />
             }
             <div className="detail">
                 <span className="title">{ props.text }</span>

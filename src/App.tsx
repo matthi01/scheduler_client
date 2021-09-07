@@ -1,13 +1,19 @@
 import React from "react";
+import Category from "./components/Category";
+import SidePanel from "./components/SidePanel";
+import { TasksProvider } from "./context/tasksContext";
 import "./styles/styles.scss"
 
 const App: React.FC = () => {
   return (
-    <div className="app">
-      <main className="width-control">
-        Well hello there new project
-      </main>
-    </div>
+    <TasksProvider tasks={[]}>
+      <div className="app">
+        <main className="main width-control">
+          <SidePanel />
+          <Category title="Test Category" />
+        </main>
+      </div>
+    </TasksProvider>
   )
 }
 
