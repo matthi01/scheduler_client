@@ -1,0 +1,9 @@
+.categories-panel {
+    min-width: 15rem;
+    max-width: 35rem;
+    width: 25rem;
+    height: 100%;
+    background: $bgSidepanel;
+    resize: horizontal;
+    overflow: auto;
+}

@@ -1,3 +1,6 @@
+import { faCircle } from "@fortawesome/free-regular-svg-icons"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useContext, useState } from "react"
 import { TasksContext } from "../context/tasksContext"
 
@@ -11,7 +14,7 @@ const AddTask: React.FC<IProps> = (props) => {
     const saveNewTask = (taskText: string) => {
         setNewTaskText("")
         saveTask({
-            id: null,
+            id: "",
             text: taskText,
             completed: false,
             stepsCompleted: 0,
@@ -21,6 +24,13 @@ const AddTask: React.FC<IProps> = (props) => {
     
     return (
         <div className="add-task">
+            <span className="icon">
+                {
+                    newTaskText
+                        ?   <FontAwesomeIcon icon={ faCircle } />
+                        :   <FontAwesomeIcon icon={ faPlus } />
+                }
+            </span>
             <input 
                 type="text" 
                 value={newTaskText} 
@@ -29,6 +39,7 @@ const AddTask: React.FC<IProps> = (props) => {
                         saveNewTask(newTaskText)
                     }
                 }}
+                placeholder="Add a task"
                 onChange={e => setNewTaskText(e.target.value)} />
         </div>
     )

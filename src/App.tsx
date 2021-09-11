@@ -1,6 +1,6 @@
 import React from "react";
-import Category from "./components/Category";
-import SidePanel from "./components/SidePanel";
+import Category from "./components/TaskPanel";
+import SidePanel from "./components/CategoriesPanel";
 import { TasksProvider } from "./context/tasksContext";
 import "./styles/styles.scss"
 
@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <TasksProvider tasks={[]}>
       <div className="app">
-        <main className="main width-control">
+        <main className="main">
           <SidePanel />
           <Category title="Test Category" />
         </main>

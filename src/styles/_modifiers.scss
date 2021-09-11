@@ -1,5 +1,25 @@
 .width-control {
     flex: 1;
-    max-width: 115rem;
+    max-width: 100rem;
     margin: 0 auto;
+}
+
+.text-strikethrough {
+    text-decoration: line-through;
+}
+
+.text-grey {
+    color: $fontGrey !important;
+}
+
+.text-light {
+    color: $fontLight;
+}
+
+.font-size-text {
+    font-size: $fontSizeText;
+}
+
+.font-size-detail {
+    font-size: $fontSizeDetail;
 }

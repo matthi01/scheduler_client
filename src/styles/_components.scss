@@ -1,32 +1,89 @@
-.category {
+.task-panel {
     width: 100%;
-    .title {
-
+    padding: $categorySpacer;
+    position: relative;
+    h1.title {
+        color: $fontPurple;
+        margin-bottom: 3rem;
     }
     .tasks {
-        
+        // ..
     }
 }
 
 .task {
-    border: 1px solid black;
-    padding: 1rem;
+    padding: .5rem 1rem;
+    margin: .3rem 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background: grey;
+    background: $bgTaskLight;
+    min-height: $taskMinHeight;
+    border-radius: $taskBorderRadius;
     .detail {
-        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
-    .title {
-        color: white;
-        font-size: 1rem;
+    .text {
+        color: $fontLight;
+        font-size: $fontSizeText;
     }
     .steps {
-        color: silver;
+        color: $fontGrey;
+        font-size: $fontSizeDetail;
+        padding-top: .5rem;
     }
-    .icon {
-        width: 1.5rem;
-        height: 1.5rem;
+}
+
+.add-task {
+    position: absolute;
+    bottom: $categorySpacer;
+    left: $categorySpacer;
+    right: $categorySpacer;
+    border-radius: $taskBorderRadius;
+    min-height: $taskMinHeight;
+    background: $bgTaskDark;
+    color: $fontPurple;
+    display: flex;
+    
+    input {
+        outline: none;
+        background: transparent;
+        border: none;
+        color: $fontPurple;
+        &::placeholder {
+            color: $fontPurple;
+        }
     }
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    svg {
+        width: 1.75rem !important;
+        height: 1.75rem !important;
+        color: $fontPurple;
+    }
+}
+
+.pill {
+    display: inline-block;
+    color: $fontPurple;
+    font-size: $fontSizeText;
+    padding: .5rem .75rem;
+    background: $bgTaskDark;
+    border-radius: 6px;
+    text-transform: capitalize;
+    margin: {
+        top: 1rem;
+        bottom: .5rem;
+    }
+}
+
+.category {
+    // ...
 }
