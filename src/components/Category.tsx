@@ -1,4 +1,4 @@
-import { faList } from "@fortawesome/free-solid-svg-icons"
+import { faExclamationCircle, faList } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import classNames from "classnames"
 import React from "react"
@@ -9,6 +9,7 @@ interface IProps {
     numOfTasks: number
     onClickHandler: () => void
     active: boolean
+    notSaved?: boolean
 }
 
 const Category: React.FC<IProps> = (props) => {
@@ -19,7 +20,11 @@ const Category: React.FC<IProps> = (props) => {
         >
             <div className="category-label">
                 <span className="icon">
-                    <FontAwesomeIcon icon={faList} />
+                    {
+                        props.notSaved
+                            ?   <FontAwesomeIcon icon={faExclamationCircle} className="warning" />
+                            :   <FontAwesomeIcon icon={faList} />
+                    }
                 </span>
                 <span className="font-size-text text-light ellipsis">
                     { props.label }

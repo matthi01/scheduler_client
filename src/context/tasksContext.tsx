@@ -1,8 +1,10 @@
 import React, { useState } from "react"
-import { ITask } from "../components/TasksPanel"
+import { axiosCreateTask } from "../axios/axios"
+import { ITask } from "../types"
 
 type TasksContextType = {
     tasks: ITask[]
+    setTasks: (tasks: ITask[]) => void
     activeTaskId: string
     setActiveTaskId: (id: string) => void
     addTask: (task: ITask) => void
@@ -15,6 +17,7 @@ interface ITasksProviderProps {
 
 export const TasksContext = React.createContext<TasksContextType>({
     tasks: [],
+    setTasks: (tasks: ITask[]) => {},
     activeTaskId: "",
     setActiveTaskId: (id: string) => {},
     addTask: (task: ITask) => {},
@@ -26,6 +29,13 @@ export const TasksProvider: React.FC<ITasksProviderProps> = (props) => {
     const [ activeTaskId, setActiveTaskId ] = useState<string>("")
 
     const addTask = (task: ITask) => {
+        axiosCreateTask(task)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.error(err)
+            })
         setTasks([...tasks, task])
     }
 
@@ -46,6 +56,7 @@ export const TasksProvider: React.FC<ITasksProviderProps> = (props) => {
     return (
         <TasksContext.Provider value={{
             tasks, 
+            setTasks,
             activeTaskId,
             setActiveTaskId,
             addTask, 

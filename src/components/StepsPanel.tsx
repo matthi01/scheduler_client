@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
+import { TasksContext } from "../context/TasksContext"
+import ConditionalRender from "./ConditionalRender"
 
-interface IProps {}
-
-const StepsPanel: React.FC<IProps> = (props) => {
+const StepsPanel: React.FC = () => {
+  const { activeTaskId } = useContext(TasksContext)
   return (
-    <div className="steps-panel">Steps Side Panel</div>
+    <ConditionalRender shouldRender={!!activeTaskId}>
+      <div className="steps-panel">Steps Side Panel</div>
+    </ConditionalRender>
   )
 }
 

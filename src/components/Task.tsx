@@ -2,9 +2,9 @@ import React, { useContext } from "react"
 import { faCircle } from "@fortawesome/free-regular-svg-icons"
 import { faCheckCircle, faExclamationCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { ITask } from "./TasksPanel"
 import { TasksContext } from "../context/TasksContext"
 import classNames from "classnames"
+import { ITask } from "../types"
 
 interface IProps extends ITask {
     active: boolean

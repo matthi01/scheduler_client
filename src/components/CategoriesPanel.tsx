@@ -1,20 +1,12 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { CategoriesContext } from "../context/CategoriesContext"
+import { TasksContext } from "../context/TasksContext"
 import AddCategory from "./AddCategory"
 import Category from "./Category"
-import { ITask } from "./TasksPanel"
 
-export interface ICategory {
-    category_id: string
-    name: string
-    description: string
-    tasks?: ITask[]
-}
-
-interface IProps {}
-
-const CategoriesPanel: React.FC<IProps> = (props) => {
-    const { categories, activeCategoryId, setActiveCategoryId } = useContext(CategoriesContext)
+const CategoriesPanel: React.FC = () => {
+    const { categories, activeCategory, setActiveCategoryId } = useContext(CategoriesContext)
+    const { tasks } = useContext(TasksContext)
 
     return (
         <div className="categories-panel">
@@ -27,9 +19,10 @@ const CategoriesPanel: React.FC<IProps> = (props) => {
                                 key={ category.category_id ? category.category_id : i } 
                                 id={category.category_id}
                                 label={category.name} 
-                                numOfTasks={category.tasks ? category.tasks.length : 0} 
+                                numOfTasks={tasks ? tasks.length : 0} 
                                 onClickHandler={() => setActiveCategoryId(category.category_id)}
-                                active={category.category_id === activeCategoryId}
+                                active={category.category_id === activeCategory?.category_id}
+                                notSaved={category.notSaved}
                             />
                         )
                     })
