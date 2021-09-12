@@ -1,0 +1,25 @@
+.categories-panel,
+.steps-panel {
+  min-width: 15rem;
+  max-width: 35rem;
+  width: 25rem;
+  height: 100%;
+  background: $bgCategoriesPanel;
+  resize: horizontal;
+  overflow: auto;
+  padding: 2rem;
+
+  hr {
+      border-color: $fontGrey;
+  }
+}
+
+.task-panel {
+  width: 100%;
+  padding: $categorySpacer;
+  position: relative;
+  h1.title {
+      color: $fontPurple;
+      margin-bottom: 3rem;
+  }
+}

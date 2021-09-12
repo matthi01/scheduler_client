@@ -1,10 +1,12 @@
 import React, { useState } from "react"
-import { ITask } from "../components/TaskPanel"
+import { ITask } from "../components/TasksPanel"
 
 type TasksContextType = {
-    saveTask: (task: ITask) => void
-    setTaskComplete: (taskId: string, taskText: string, complete: boolean) => void
     tasks: ITask[]
+    activeTaskId: string
+    setActiveTaskId: (id: string) => void
+    addTask: (task: ITask) => void
+    setTaskComplete: (taskId: string, taskText: string, complete: boolean) => void
 }
 
 interface ITasksProviderProps {
@@ -13,14 +15,17 @@ interface ITasksProviderProps {
 
 export const TasksContext = React.createContext<TasksContextType>({
     tasks: [],
-    saveTask: (task: ITask) => {},
+    activeTaskId: "",
+    setActiveTaskId: (id: string) => {},
+    addTask: (task: ITask) => {},
     setTaskComplete: (taskId: string, taskText: string, complete: boolean) => {}
 })
 
 export const TasksProvider: React.FC<ITasksProviderProps> = (props) => {
     const [ tasks, setTasks ] = useState<ITask[]>([])
+    const [ activeTaskId, setActiveTaskId ] = useState<string>("")
 
-    const saveTask = (task: ITask) => {
+    const addTask = (task: ITask) => {
         setTasks([...tasks, task])
     }
 
@@ -39,7 +44,13 @@ export const TasksProvider: React.FC<ITasksProviderProps> = (props) => {
     }
 
     return (
-        <TasksContext.Provider value={{tasks, saveTask, setTaskComplete}}>
+        <TasksContext.Provider value={{
+            tasks, 
+            activeTaskId,
+            setActiveTaskId,
+            addTask, 
+            setTaskComplete
+        }}>
             { props.children }
         </TasksContext.Provider>
     )

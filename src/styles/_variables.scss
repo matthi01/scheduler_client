@@ -4,15 +4,28 @@ $categorySpacer: 2rem;
 $taskBorderRadius: 4px;
 
 // background colors:
-$bgSidepanel: #201C22;
+$bgCategoriesPanel: #201C22;
 $bgCategory: #171717;
 $bgTaskLight: #262626;
 $bgTaskDark: #1D1D1D;
 
-// font colors
+$bgActiveCategory: #353433;
+$bgActiveTask: #2F3140;
+
+// font colors:
 $fontLight: #DADADA;
 $fontGrey: #A5A5A6;
 $fontPurple: #6575D6;
+
+// colors:
+$light: #DADADA;
+$grey: #A5A5A6;
+$purple: #6575D6;
+
+// indicator colors:
+$success: darkgreen;
+$warning: darkOrange;
+$danger: darkred;
 
 // font sizes:
 $fontSizeDetail: 1.1rem;

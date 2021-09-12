@@ -2,19 +2,18 @@ import { faCircle } from "@fortawesome/free-regular-svg-icons"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useContext, useState } from "react"
-import { TasksContext } from "../context/tasksContext"
+import { TasksContext } from "../context/TasksContext"
 
 interface IProps {}
 
 const AddTask: React.FC<IProps> = (props) => {
     const [ newTaskText, setNewTaskText ] = useState("")
-
-    const { saveTask } = useContext(TasksContext)
+    const { addTask } = useContext(TasksContext)
 
     const saveNewTask = (taskText: string) => {
         setNewTaskText("")
-        saveTask({
-            id: "",
+        addTask({
+            id: (Math.random() * 100000000000).toString(), // this needs to be replaced and should be handled by the back-end
             text: taskText,
             completed: false,
             stepsCompleted: 0,

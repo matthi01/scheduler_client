@@ -1,32 +1,43 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
+import { CategoriesContext } from "../context/CategoriesContext"
+import AddCategory from "./AddCategory"
 import Category from "./Category"
+import { ITask } from "./TasksPanel"
+
+export interface ICategory {
+    category_id: string
+    name: string
+    description: string
+    tasks?: ITask[]
+}
 
 interface IProps {}
 
-const SidePanel: React.FC<IProps> = (props) => {
-    const [ categories, setCategories ] = useState(
-        [
-            {
-                label: "test category 1", 
-                tasks: [{text: "something 1"}, {text: "something else 1"}]
-            },
-            {
-                label: "test category 2", 
-                tasks: [{text: "something 2"}, {text: "something else 2"}, {text: "something else 2"}]
-            }
-        ]
-    )
+const CategoriesPanel: React.FC<IProps> = (props) => {
+    const { categories, activeCategoryId, setActiveCategoryId } = useContext(CategoriesContext)
+
     return (
         <div className="categories-panel">
-            {
-                categories.map(category => {
-                    return (
-                        <Category label={category.label} numOfTasks={category.tasks.length} />
-                    )
-                })
-            }
+            <hr />
+            <div className="categories">
+                {
+                    categories.map((category, i) => {
+                        return (
+                            <Category
+                                key={ category.category_id ? category.category_id : i } 
+                                id={category.category_id}
+                                label={category.name} 
+                                numOfTasks={category.tasks ? category.tasks.length : 0} 
+                                onClickHandler={() => setActiveCategoryId(category.category_id)}
+                                active={category.category_id === activeCategoryId}
+                            />
+                        )
+                    })
+                }
+            </div>
+            <AddCategory />
         </div>
     )
 }
 
-export default SidePanel
+export default CategoriesPanel

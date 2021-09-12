@@ -1,5 +1,5 @@
-import React, { useContext } from "react"
-import { TasksContext } from "../context/tasksContext"
+import React, { useContext, useState } from "react"
+import { TasksContext } from "../context/TasksContext"
 import AddTask from "./AddTask"
 import Pill from "./Pill"
 import Task from "./Task"
@@ -16,8 +16,8 @@ interface IProps {
     title: string
 }
 
-const TaskPanel: React.FC<IProps> = (props) => {
-    const { tasks } = useContext(TasksContext)
+const TasksPanel: React.FC<IProps> = (props) => {
+    const { tasks, activeTaskId, setActiveTaskId } = useContext(TasksContext)
 
     const openTasks = tasks.filter(task => !task.completed)
     const closedTasks = tasks.filter(task => task.completed)
@@ -37,6 +37,8 @@ const TaskPanel: React.FC<IProps> = (props) => {
                                 completed={task.completed}
                                 stepsCompleted={task.stepsCompleted}
                                 stepsTotal={task.stepsTotal}
+                                onClickHandler={() => setActiveTaskId(task.id)}
+                                active={task.id === activeTaskId}
                             />
                         ))
                     }
@@ -53,6 +55,8 @@ const TaskPanel: React.FC<IProps> = (props) => {
                                                 completed={task.completed}
                                                 stepsCompleted={task.stepsCompleted}
                                                 stepsTotal={task.stepsTotal}
+                                                onClickHandler={() => setActiveTaskId(task.id)}
+                                                active={task.id === activeTaskId}
                                             />
                                         ))
                                         }
@@ -65,4 +69,4 @@ const TaskPanel: React.FC<IProps> = (props) => {
     )
 }
 
-export default TaskPanel
+export default TasksPanel
